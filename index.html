@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="shortcut icon" type="image/png" href="logo.png">
+<title>OnlyFans — Login Demo</title>
+<style>
+:root{
+  --blue:#00aeef;
+  --blue2:#0aaee9;
+  --text:#252525;
+  --muted:#8c99a6;
+  --line:#d0d6dc;
+  --disabled:#dfe3e7;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text)}
+body{background:#fff}
+button,input{font:inherit}
+
+/* Cookie banner */
+.cookie{
+  height:85px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  padding:0 22px;
+  background:#fafafa;
+  border-bottom:1px solid #dfe3e7;
+  color:#8996a4;
+  font-size:18px;
+}
+.cookie-icon{
+  width:21px;height:21px;border:2px dotted #94a0ac;border-radius:50%;
+  position:relative;display:inline-block;
+}
+.cookie-icon:after{
+  content:"";position:absolute;background:#fafafa;width:9px;height:9px;
+  right:-4px;top:-3px;border-radius:50%;
+}
+.cookie a,.cookie button.link{
+  color:#00a8e8;text-decoration:none;background:none;border:0;cursor:pointer;
+}
+.cookie .link{font-weight:500}
+.cookie .necessary{font-weight:700}
+.accept{
+  border:0;border-radius:28px;background:var(--blue);color:#fff;
+  font-weight:700;padding:14px 25px;cursor:pointer;
+}
+
+/* Main split layout */
+.main{
+  min-height:calc(100vh - 85px);
+  display:grid;
+  grid-template-columns:50% 50%;
+}
+.brand{
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(180deg,#08ace8 0%,#08ace8 47%,#16b1e8 100%);
+  color:#fff;
+  min-height:705px;
+  padding:102px 11.5%;
+}
+.brand-title{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  position:relative;
+  z-index:2;
+  font-size:54px;
+  font-weight:800;
+  letter-spacing:-2.8px;
+}
+.logo-image{
+  width:64px;
+  height:64px;
+  object-fit:contain;
+  display:block;
+}
+.logo-img{
+  width:64px;
+  height:64px;
+  object-fit:contain;
+  display:block;
+}
+.brand-subtitle{
+  position:relative;z-index:2;
+  margin-top:27px;
+  font-size:41px;
+  line-height:1.12;
+  font-weight:400;
+  letter-spacing:-1.2px;
+  max-width:560px;
+}
+.shape{
+  position:absolute;border-radius:50%;background:rgba(255,255,255,.09);
+}
+.s1{width:770px;height:770px;left:-500px;bottom:-625px}
+.s2{width:930px;height:930px;left:115px;bottom:-770px}
+.s3{width:570px;height:570px;left:-170px;bottom:-330px;background:rgba(255,255,255,.075)}
+.s4{width:630px;height:630px;right:-460px;bottom:-520px;background:rgba(255,255,255,.055)}
+
+.login-area{
+  display:flex;align-items:center;justify-content:center;
+  padding:70px 9%;
+  background:#fff;
+}
+.card{width:min(100%,470px)}
+.card h1{font-size:20px;margin:0 0 16px;font-weight:700}
+.email{
+  width:100%;height:66px;border:1px solid #cbd2d9;border-radius:9px;
+  padding:0 20px;font-size:20px;color:#222;outline:0;
+  transition:.15s;border-color:#cbd2d9;
+}
+.email::placeholder{color:#8996a4}
+.email:focus{border-color:#00aeef;box-shadow:0 0 0 1px #00aeef}
+.next{
+  width:100%;height:56px;border:0;border-radius:29px;
+  margin-top:38px;background:var(--disabled);color:#fff;
+  font-size:17px;font-weight:700;cursor:pointer;transition:.15s;
+}
+.next.enabled{background:var(--blue)}
+.terms{
+  margin:12px 15px 0;color:#8a97a4;font-size:16px;line-height:1.42;
+}
+.terms a,.signup{color:#00a8e8;text-decoration:none}
+.signup{
+  display:block;text-align:center;font-size:18px;margin:44px 0;
+}
+.social{
+  height:56px;width:100%;border:0;border-radius:29px;color:#fff;
+  font-size:17px;font-weight:700;margin-bottom:20px;cursor:pointer;
+}
+.x{background:#20a5e7}
+.google{background:#4285e6}
+.x-logo{font-size:28px;font-weight:400;vertical-align:-2px}
+.google-logo{
+  display:inline-flex;width:28px;height:28px;border-radius:50%;
+  background:#fff;color:#4285e6;align-items:center;justify-content:center;
+  font-weight:800;font-size:19px;vertical-align:-4px;margin-right:6px;
+}
+.demo{
+  margin-top:8px;background:#f4f8fa;border:1px solid #e5eaee;
+  color:#73808d;padding:12px 14px;border-radius:8px;
+  text-align:center;font-size:12px;line-height:1.45;
+}
+
+/* Help tab */
+.help{
+  position:fixed;right:0;bottom:140px;width:57px;height:56px;
+  background:#08ace8;color:#fff;border-radius:5px 0 0 5px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;font-weight:700;box-shadow:0 2px 5px rgba(0,0,0,.12);
+}
+
+/* Demo dialog */
+.modal{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.48);
+  align-items:center;justify-content:center;padding:20px;z-index:100;
+}
+.modal.show{display:flex}
+.modal-box{
+  width:min(100%,410px);background:#fff;border-radius:14px;
+  padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center;
+}
+.modal-box h2{margin:0 0 10px;font-size:22px}
+.modal-box p{color:#7f8b97;line-height:1.5;font-size:14px}
+.modal-close{
+  border:0;background:#f1f3f5;width:36px;height:36px;border-radius:50%;
+  cursor:pointer;font-size:22px;float:right;
+}
+.modal-button{
+  width:100%;height:48px;border:0;border-radius:24px;
+  background:var(--blue);color:#fff;font-weight:700;cursor:pointer;margin-top:10px;
+}
+
+@media(max-width:900px){
+  .cookie{height:auto;min-height:76px;flex-wrap:wrap;gap:10px 18px;padding:14px;font-size:14px}
+  .accept{padding:10px 20px;font-size:14px}
+  .main{grid-template-columns:1fr}
+  .brand{min-height:360px;padding:70px 9%}
+  .brand-title{font-size:43px}
+  .brand-subtitle{font-size:31px}
+  .login-area{padding:55px 8%}
+  .help{bottom:25px}
+}
+@media(max-width:520px){
+  .brand{min-height:310px;padding:55px 8%}
+  .brand-title{font-size:36px;gap:10px}
+  .logo-image{width:52px;height:52px}
+  .brand-subtitle{font-size:27px}
+  .login-area{padding:45px 22px}
+  .email{height:58px;font-size:17px}
+}
+</style>
+</head>
+<body>
+
+<div class="cookie" id="cookie">
+  <span class="cookie-icon"></span>
+  <span>We use cookies to run this website.</span>
+  <a href="#" onclick="demoNotice(event)">Cookie Notice</a>
+  <button class="link necessary" onclick="hideCookies()">ONLY NECESSARY COOKIES</button>
+  <button class="accept" onclick="hideCookies()">ACCEPT ALL</button>
+</div>
+
+<main class="main">
+  <section class="brand">
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+    <div class="shape s3"></div>
+    <div class="shape s4"></div>
+
+    <div class="brand-title">
+      <img src="logo.png" alt="OnlyFans logo" class="logo-image">
+      <span>OnlyFans</span>
+    </div>
+
+    <div class="brand-subtitle">
+      Sign up to support your<br>
+      favorite creators
+    </div>
+  </section>
+
+  <section class="login-area">
+    <div class="card">
+      <h1>Log in</h1>
+
+      <form id="loginForm" onsubmit="demoLogin(event)">
+        <input id="email" class="email" type="email" placeholder="Email" required>
+        <button id="next" class="next" type="submit">NEXT</button>
+      </form>
+
+      <div class="terms">
+        By logging in and using this demo, you agree to our
+        <a href="#" onclick="demoNotice(event)">Terms of Service</a>
+        and
+        <a href="#" onclick="demoNotice(event)">Privacy Policy</a>.
+      </div>
+
+      <a class="signup" href="#" onclick="demoNotice(event)">Sign up for OnlyFans</a>
+
+      <button class="social x" onclick="demoNotice(event)">
+        <span class="x-logo">𝕏</span>
+        &nbsp;&nbsp;&nbsp;&nbsp; SIGN IN WITH X
+      </button>
+
+      <button class="social google" onclick="demoNotice(event)">
+        <span class="google-logo">G</span>
+        SIGN IN WITH GOOGLE
+      </button>
+
+      <div class="demo">
+        <strong>Demo page</strong><br>
+        This interface is for design/testing only. No passwords,
+        social accounts, payments, or real authentication are connected.
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="help">?</div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2>Demo Only</h2>
+    <p>This is a visual demo. No information is sent to OnlyFans or any other external service.</p>
+    <button class="modal-button" onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+<script>
+const email=document.getElementById("email");
+const next=document.getElementById("next");
+const modal=document.getElementById("modal");
+
+email.addEventListener("input",()=>{
+  next.classList.toggle("enabled",email.value.trim().length>0);
+});
+
+function demoLogin(e){
+  e.preventDefault();
+  modal.classList.add("show");
+}
+function demoNotice(e){
+  e.preventDefault();
+  modal.classList.add("show");
+}
+function closeModal(){
+  modal.classList.remove("show");
+}
+function hideCookies(){
+  document.getElementById("cookie").style.display="none";
+}
+window.addEventListener("click",(e)=>{
+  if(e.target===modal)closeModal();
+});
+</script>
+
+</body>
+</html>
