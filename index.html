@@ -64,32 +64,80 @@ footer{border-top:1px solid var(--line);padding:35px 8%;display:flex;justify-con
 <script>
 const gallery=document.getElementById('gallery');
 const extensions=['jpg','jpeg','png','webp'];
-const maxSketches=100;
+const maxSketches=50;
 let loadedCount=0;
+
 function addSketch(src,index){
- const card=document.createElement('article');
- card.className='art-card';
- card.innerHTML=`<div class="art-image"><img src="${src}" alt="Shisha Kalam Sketch ${String(index).padStart(2,'0')}"></div><div class="art-info"><span class="art-number">${String(index).padStart(2,'0')}</span><span class="art-title">Sketch ${index}</span></div>`;
- gallery.appendChild(card);
- requestAnimationFrame(()=>card.classList.add('visible'));
- card.addEventListener('click',()=>openViewer(src,index));
- loadedCount++;
+  const card=document.createElement('article');
+  card.className='art-card';
+  card.innerHTML=`<div class="art-image"><img src="${src}" alt="Shisha Kalam Sketch ${String(index).padStart(2,'0')}"></div><div class="art-info"><span class="art-number">${String(index).padStart(2,'0')}</span><span class="art-title">Sketch ${index}</span></div>`;
+  gallery.appendChild(card);
+  requestAnimationFrame(()=>card.classList.add('visible'));
+  card.addEventListener('click',()=>openViewer(src,index));
+  loadedCount++;
 }
-function trySketch(index,extIndex=0){
- if(index>maxSketches){if(!loadedCount)gallery.innerHTML='<div class="empty-gallery">Your sketchbook is waiting.<small>Upload sketch1.jpg inside the sketches folder to begin.</small></div>';return;}
- if(extIndex>=extensions.length){trySketch(index+1);return;}
- const ext=extensions[extIndex];
- const src=`sketches/sketch${index}.${ext}`;
- const img=new Image();
- img.onload=()=>{addSketch(src,index);trySketch(index+1)};
- img.onerror=()=>trySketch(index,extIndex+1);
- img.src=src;
+
+/*
+  The website checks both:
+  1. sketch1.jpg       (GitHub repository root)
+  2. sketches/sketch1.jpg
+
+  So you can simply upload sketch1.jpg to GitHub and it will appear.
+*/
+function findSketch(index, locationIndex=0, extIndex=0){
+  if(index>maxSketches){
+    if(!loadedCount){
+      gallery.innerHTML='<div class="empty-gallery">Your sketchbook is waiting.<small>Upload sketch1.jpg to GitHub to begin.</small></div>';
+    }
+    return;
+  }
+
+  const locations=['','sketches/'];
+
+  if(locationIndex>=locations.length){
+    findSketch(index+1,0,0);
+    return;
+  }
+
+  if(extIndex>=extensions.length){
+    findSketch(index,locationIndex+1,0);
+    return;
+  }
+
+  const src=`${locations[locationIndex]}sketch${index}.${extensions[extIndex]}`;
+  const img=new Image();
+
+  img.onload=()=>{
+    addSketch(src,index);
+    findSketch(index+1,0,0);
+  };
+
+  img.onerror=()=>findSketch(index,locationIndex,extIndex+1);
+  img.src=src;
 }
-trySketch(1);
-const lightbox=document.getElementById('lightbox'),lightboxImage=document.getElementById('lightboxImage'),closeLightbox=document.getElementById('closeLightbox');
-function openViewer(src,index){lightboxImage.src=src;lightboxImage.alt=`Shisha Kalam Sketch ${index}`;lightbox.classList.add('active');document.body.style.overflow='hidden'}
-function closeViewer(){lightbox.classList.remove('active');lightboxImage.src='';document.body.style.overflow=''}
-closeLightbox.addEventListener('click',closeViewer);lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeViewer()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeViewer()});
+
+findSketch(1);
+
+const lightbox=document.getElementById('lightbox');
+const lightboxImage=document.getElementById('lightboxImage');
+const closeLightbox=document.getElementById('closeLightbox');
+
+function openViewer(src,index){
+  lightboxImage.src=src;
+  lightboxImage.alt=`Shisha Kalam Sketch ${index}`;
+  lightbox.classList.add('active');
+  document.body.style.overflow='hidden';
+}
+
+function closeViewer(){
+  lightbox.classList.remove('active');
+  lightboxImage.src='';
+  document.body.style.overflow='';
+}
+
+closeLightbox.addEventListener('click',closeViewer);
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeViewer()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeViewer()});
 </script>
 </body>
 </html>
