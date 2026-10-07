@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shisha Kalam — Art & Sketches</title>
+<title>Shisha Kalam</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,175 +12,84 @@
 :root{--paper:#f3eee5;--paper-light:#faf7f0;--ink:#25231f;--muted:#7b756b;--line:#d9d1c3;--green:#66735a;--green-dark:#4d5a44}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{background:radial-gradient(rgba(70,60,45,.035) 1px,transparent 1px);background-size:7px 7px;background-color:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif;line-height:1.6;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E")}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E")}
 a{color:inherit;text-decoration:none}
-nav{position:fixed;top:0;left:0;width:100%;height:78px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;z-index:1000;background:rgba(243,238,229,.72);backdrop-filter:blur(18px);border-bottom:1px solid rgba(217,209,195,.75)}
+nav{position:fixed;top:0;left:0;width:100%;height:78px;padding:0 6%;display:flex;align-items:center;justify-content:space-between;z-index:1000;background:rgba(243,238,229,.76);backdrop-filter:blur(18px);border-bottom:1px solid rgba(217,209,195,.75)}
 .logo{font-family:"Cormorant Garamond",serif;font-size:30px;font-weight:600;letter-spacing:1px}.logo span{color:var(--green-dark)}
-.nav-links{display:flex;gap:30px}.nav-links a{position:relative;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted)}
-.nav-links a::after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:1px;background:var(--green-dark);transition:width .3s}.nav-links a:hover{color:var(--green-dark)}.nav-links a:hover::after{width:100%}
-.hero{min-height:100vh;padding:150px 8% 90px;display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
-.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:4px;color:var(--green-dark);margin-bottom:20px}
-.hero h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(78px,11vw,160px);line-height:.76;letter-spacing:-6px}.hero h1 span{color:var(--green-dark)}
-.hero-description{max-width:540px;margin-top:42px;font-size:16px;color:var(--muted);line-height:1.9}
-.hero-actions{margin-top:35px;display:flex;align-items:center;gap:25px;flex-wrap:wrap}
-.primary-button{display:inline-flex;padding:14px 25px;background:var(--ink);color:var(--paper-light);text-transform:uppercase;letter-spacing:1.7px;font-size:10px;transition:.3s}.primary-button:hover{background:var(--green-dark);transform:translateY(-2px)}
-.secondary-link{font-size:12px;color:var(--muted);border-bottom:1px solid var(--muted);padding-bottom:3px}
-.hero-art{position:relative;display:flex;justify-content:center}.hero-paper{width:min(390px,90%);aspect-ratio:.74;background:#e7ded0;position:relative;transform:rotate(4deg);box-shadow:25px 30px 70px rgba(50,44,35,.17)}
-.hero-paper::before{content:"";position:absolute;inset:17px;border:1px solid rgba(70,60,50,.2)}.hero-paper::after{content:"SK";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-4deg);font-family:"Cormorant Garamond",serif;font-size:140px;color:rgba(65,65,58,.17);font-weight:600}
-.hero-caption{position:absolute;bottom:-28px;left:20px;font-family:"Cormorant Garamond",serif;font-size:20px;color:var(--muted);transform:rotate(-3deg)}
-section{padding:120px 8%}.section-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:70px}.section-number{font-size:11px;letter-spacing:3px;color:var(--green-dark)}
-.section-title{font-family:"Cormorant Garamond",serif;font-size:clamp(60px,8vw,105px);font-weight:500;line-height:.8;letter-spacing:-3px}.section-description{max-width:320px;color:var(--muted);font-size:13px;line-height:1.8}
-.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:26px;align-items:start}
-.art-card{background:var(--paper-light);border:1px solid var(--line);cursor:pointer;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s ease;opacity:0;transform:translateY(35px)}
-.art-card.visible{opacity:1;transform:translateY(0)}.art-card:hover{transform:translateY(-10px) rotate(.2deg);box-shadow:0 25px 55px rgba(50,43,32,.14)}
-.art-card:nth-child(3n+1){grid-column:span 7}.art-card:nth-child(3n+2){grid-column:span 5;margin-top:90px}.art-card:nth-child(3n){grid-column:span 4}
-.art-image{width:100%;aspect-ratio:.78;background:#e9e1d3;overflow:hidden;display:flex;align-items:center;justify-content:center}.art-image img{width:100%;height:100%;object-fit:contain;padding:12px;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}.art-card:hover .art-image img{transform:scale(1.025)}
-.art-info{padding:17px 19px 20px;display:flex;align-items:baseline;justify-content:space-between}.art-number{font-size:10px;color:var(--green-dark);letter-spacing:2px}.art-title{font-family:"Cormorant Garamond",serif;font-size:24px}
-.about{background:var(--paper-light);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.about-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:100px;align-items:start}.about-label{color:var(--green-dark);text-transform:uppercase;letter-spacing:3px;font-size:11px}
-.about-content h2{font-family:"Cormorant Garamond",serif;font-size:clamp(55px,7vw,100px);font-weight:500;line-height:.82;letter-spacing:-3px;margin-bottom:45px}.about-content p{max-width:700px;color:var(--muted);font-size:17px;line-height:1.9;margin-bottom:20px}
-.instagram{text-align:center;position:relative}.instagram::before{content:"✦";position:absolute;top:90px;left:12%;font-size:28px;color:var(--green);opacity:.5}.instagram::after{content:"✦";position:absolute;bottom:90px;right:12%;font-size:18px;color:var(--green);opacity:.5}
-.instagram h2{font-family:"Cormorant Garamond",serif;font-size:clamp(60px,8vw,105px);font-weight:500;line-height:.8}.handle{color:var(--green-dark);font-size:17px;margin-top:25px}.instagram p{max-width:500px;margin:22px auto 35px;color:var(--muted);font-size:14px}
-.instagram-button{display:inline-flex;padding:14px 28px;border:1px solid var(--ink);font-size:10px;letter-spacing:2px;text-transform:uppercase;transition:.3s}.instagram-button:hover{background:var(--ink);color:var(--paper)}
-.owner{margin-top:22px;color:var(--muted);font-size:12px;letter-spacing:1px}.owner strong{color:var(--ink);font-weight:500}
-footer{border-top:1px solid var(--line);padding:35px 8%;display:flex;justify-content:space-between;color:var(--muted);font-size:11px;letter-spacing:.5px}
-.lightbox{position:fixed;inset:0;z-index:5000;background:rgba(25,24,21,.96);display:flex;align-items:center;justify-content:center;padding:35px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}.lightbox.active{opacity:1;visibility:visible}.lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 25px 80px rgba(0,0,0,.35)}.close-lightbox{position:absolute;right:35px;top:25px;color:white;font-size:40px;font-weight:200;cursor:pointer;line-height:1}
+.nav-links{display:flex;gap:28px;align-items:center}.nav-links a{position:relative;font-size:10px;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted)}.nav-links a::after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:1px;background:var(--green-dark);transition:width .3s}.nav-links a:hover{color:var(--green-dark)}.nav-links a:hover::after{width:100%}
+.hero{min-height:100vh;padding:150px 8% 90px;display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:4px;color:var(--green-dark);margin-bottom:20px}.hero h1{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(78px,11vw,160px);line-height:.76;letter-spacing:-6px}.hero h1 span{color:var(--green-dark)}
+.hero-description{max-width:540px;margin-top:42px;font-size:16px;color:var(--muted);line-height:1.9}.hero-actions{margin-top:35px;display:flex;align-items:center;gap:25px;flex-wrap:wrap}.primary-button{display:inline-flex;padding:14px 25px;background:var(--ink);color:var(--paper-light);text-transform:uppercase;letter-spacing:1.7px;font-size:10px;transition:.3s}.primary-button:hover{background:var(--green-dark);transform:translateY(-2px)}.secondary-link{font-size:12px;color:var(--muted);border-bottom:1px solid var(--muted);padding-bottom:3px}
+.hero-art{position:relative;display:flex;justify-content:center}.hero-paper{width:min(390px,90%);aspect-ratio:.74;background:#e7ded0;position:relative;transform:rotate(4deg);box-shadow:25px 30px 70px rgba(50,44,35,.17)}.hero-paper::before{content:"";position:absolute;inset:17px;border:1px solid rgba(70,60,50,.2)}.hero-paper::after{content:"SK";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-4deg);font-family:"Cormorant Garamond",serif;font-size:140px;color:rgba(65,65,58,.17);font-weight:600}.hero-caption{position:absolute;bottom:-28px;left:20px;font-family:"Cormorant Garamond",serif;font-size:20px;color:var(--muted);transform:rotate(-3deg)}
+section{padding:120px 8%}.section-top{display:flex;justify-content:space-between;align-items:end;margin-bottom:70px}.section-number{font-size:10px;letter-spacing:3px;color:var(--green-dark)}.section-title{font-family:"Cormorant Garamond",serif;font-size:clamp(60px,8vw,105px);font-weight:500;line-height:.8;letter-spacing:-3px}.section-description{max-width:320px;color:var(--muted);font-size:13px;line-height:1.8}
+.gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:26px;align-items:start}.art-card{background:var(--paper-light);border:1px solid var(--line);cursor:pointer;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s ease;opacity:0;transform:translateY(35px)}.art-card.visible{opacity:1;transform:translateY(0)}.art-card:hover{transform:translateY(-10px) rotate(.2deg);box-shadow:0 25px 55px rgba(50,43,32,.14)}
+.art-card:nth-child(3n+1){grid-column:span 7}.art-card:nth-child(3n+2){grid-column:span 5;margin-top:90px}.art-card:nth-child(3n){grid-column:span 4}.art-card:nth-child(6n){margin-top:55px}
+.art-image{width:100%;aspect-ratio:.78;background:#e9e1d3;overflow:hidden;display:flex;align-items:center;justify-content:center}.art-image img{width:100%;height:100%;object-fit:contain;padding:12px;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}.art-card:hover .art-image img{transform:scale(1.025)}.art-info{padding:17px 19px 20px;display:flex;align-items:baseline;justify-content:space-between}.art-number{font-size:10px;color:var(--green-dark);letter-spacing:2px}.art-title{font-family:"Cormorant Garamond",serif;font-size:24px}
+.empty-gallery{grid-column:1/-1;text-align:center;padding:65px 20px;border:1px dashed var(--line);color:var(--muted);font-family:"Cormorant Garamond",serif;font-size:24px}.empty-gallery small{display:block;font-family:"DM Sans",sans-serif;font-size:11px;letter-spacing:1px;margin-top:8px}
+.about{background:var(--paper-light);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.about-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:100px;align-items:start}.about-label{color:var(--green-dark);text-transform:uppercase;letter-spacing:3px;font-size:10px}.about-content h2{font-family:"Cormorant Garamond",serif;font-size:clamp(55px,7vw,100px);font-weight:500;line-height:.82;letter-spacing:-3px;margin-bottom:45px}.about-content p{max-width:700px;color:var(--muted);font-size:17px;line-height:1.9;margin-bottom:20px}
+.instagram{text-align:center;position:relative}.instagram::before{content:"✦";position:absolute;top:90px;left:12%;font-size:28px;color:var(--green);opacity:.5}.instagram::after{content:"✦";position:absolute;bottom:90px;right:12%;font-size:18px;color:var(--green);opacity:.5}.instagram h2{font-family:"Cormorant Garamond",serif;font-size:clamp(60px,8vw,105px);font-weight:500;line-height:.8}.instagram-intro{max-width:560px;margin:28px auto 35px;color:var(--muted);font-size:14px}.social-links{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}.instagram-button{display:inline-flex;padding:14px 24px;border:1px solid var(--ink);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;transition:.3s}.instagram-button:hover{background:var(--ink);color:var(--paper)}
+.signature{margin-top:70px;font-family:"Cormorant Garamond",serif;font-size:22px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:35px 8%;display:flex;justify-content:space-between;color:var(--muted);font-size:11px;letter-spacing:.5px}.lightbox{position:fixed;inset:0;z-index:5000;background:rgba(25,24,21,.96);display:flex;align-items:center;justify-content:center;padding:35px;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}.lightbox.active{opacity:1;visibility:visible}.lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;box-shadow:0 25px 80px rgba(0,0,0,.35)}.close-lightbox{position:absolute;right:35px;top:25px;color:white;font-size:40px;font-weight:200;cursor:pointer;line-height:1}
 @media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:130px}.hero-art{order:-1}.about-grid{grid-template-columns:1fr;gap:40px}.gallery{grid-template-columns:repeat(2,1fr)}.art-card:nth-child(n){grid-column:span 1;margin-top:0}.art-card:nth-child(3n){margin-top:35px}}
-@media(max-width:600px){nav{height:68px;padding:0 6%}.logo{font-size:25px}.nav-links{gap:12px}.nav-links a{font-size:8px;letter-spacing:1px}.hero{padding:110px 7% 80px;gap:65px}.hero h1{font-size:78px;letter-spacing:-4px}.hero-description{font-size:14px;margin-top:30px}.hero-actions{flex-direction:column;align-items:flex-start}section{padding:80px 7%}.section-top{display:block;margin-bottom:45px}.section-description{margin-top:25px}.gallery{grid-template-columns:1fr;gap:22px}.art-card:nth-child(n){grid-column:span 1;margin-top:0}.art-card:nth-child(even){margin-top:25px}.about-content h2{font-size:65px}.about-content p{font-size:15px}.instagram h2{font-size:67px}footer{display:block;text-align:center;line-height:2}}
+@media(max-width:600px){nav{height:68px;padding:0 6%}.logo{font-size:25px}.nav-links{gap:11px}.nav-links a{font-size:8px;letter-spacing:1px}.hero{padding:110px 7% 80px;gap:65px}.hero h1{font-size:78px;letter-spacing:-4px}.hero-description{font-size:14px;margin-top:30px}.hero-actions{flex-direction:column;align-items:flex-start}section{padding:80px 7%}.section-top{display:block;margin-bottom:45px}.section-description{margin-top:25px}.gallery{grid-template-columns:1fr;gap:22px}.art-card:nth-child(n){grid-column:span 1;margin-top:0}.art-card:nth-child(even){margin-top:25px}.about-content h2{font-size:65px}.about-content p{font-size:15px}.instagram h2{font-size:67px}.signature{margin-top:55px}footer{display:block;text-align:center;line-height:2}}
 </style>
 </head>
 <body>
 <nav>
 <a href="#" class="logo">Shisha <span>Kalam</span></a>
-<div class="nav-links"><a href="#works">Works</a><a href="#about">About</a><a href="#instagram">Instagram</a><a href="https://rahulkmahato.com.np" target="_blank" rel="noopener noreferrer">Main Website</a></div>
+<div class="nav-links"><a href="#works">Works</a><a href="#about">About</a><a href="#instagram">Instagram</a></div>
 </nav>
 <header class="hero">
 <div>
-<div class="eyebrow">Independent Sketch Artist</div>
+<div class="eyebrow">A personal sketchbook</div>
 <h1>Shisha<br><span>Kalam</span></h1>
-<p class="hero-description">Pencil, paper and observation. A collection of hand-drawn portraits and sketches created one stroke at a time.</p>
-<div class="hero-actions"><a href="#works" class="primary-button">View the collection</a><a href="https://rahulkmahato.com.np" target="_blank" rel="noopener noreferrer" class="primary-button">Main Website</a><a href="#instagram" class="secondary-link">@shisha_kalam</a></div>
+<p class="hero-description">Pencil, paper and observation. A collection of hand-drawn portraits and sketches, created one stroke at a time.</p>
+<div class="hero-actions"><a href="#works" class="primary-button">View the collection</a><a href="https://rahulkmahato.com.np" target="_blank" rel="noopener noreferrer" class="primary-button">Main Website</a><a href="https://www.instagram.com/shisha_kalam/" target="_blank" rel="noopener noreferrer" class="secondary-link">@shisha_kalam</a></div>
 </div>
 <div class="hero-art"><div class="hero-paper"></div><div class="hero-caption">drawn by hand · 2026</div></div>
 </header>
 <section id="works">
-<div class="section-top">
-<div><div class="section-number">01 / Selected Works</div><h2 class="section-title">The<br>Sketchbook</h2></div>
-<p class="section-description">A visual collection of portraits, faces and moments captured through graphite and paper.</p>
-</div>
+<div class="section-top"><div><div class="section-number">01 / Selected Works</div><h2 class="section-title">The<br>Sketchbook</h2></div><p class="section-description">Only sketches uploaded to the <strong>sketches</strong> folder appear here. Add another image to grow the collection.</p></div>
 <div class="gallery" id="gallery"></div>
 </section>
 <section class="about" id="about">
-<div class="about-grid"><div class="about-label">02 / About</div><div class="about-content"><h2>Every line<br>has a story.</h2><p>Shisha Kalam is a personal sketchbook brought into the digital world — a place for drawings, portraits and observations made with pencil and paper.</p><p>The focus is simple: observe carefully, draw patiently and let the character of the subject appear through every line.</p></div></div>
+<div class="about-grid"><div class="about-label">02 / About</div><div class="about-content"><h2>Every line<br>has a story.</h2><p>Shisha Kalam is a personal sketchbook brought into the digital world — a place for drawings, portraits and observations made with pencil and paper.</p><p>The focus is simple: observe carefully, draw patiently and let the character of the subject appear through every line.</p><div class="signature">A sketchbook by <strong>Rahul K Mahato</strong></div></div></div>
 </section>
 <section class="instagram" id="instagram">
-<div class="eyebrow">03 / Follow the journey</div>
-<h2>From the<br>sketchbook to Instagram.</h2>
-<div class="handle">@shisha_kalam</div>
-<p>New sketches, artwork and behind-the-scenes moments are shared on Instagram.</p>
-<a href="https://www.instagram.com/shisha_kalam/" target="_blank" rel="noopener noreferrer" class="instagram-button">Visit Instagram</a>
-<div class="owner">Owned by <strong>Rahul K. Mahato</strong></div>
+<div class="eyebrow">03 / Follow the journey</div><h2>From the<br>sketchbook to Instagram.</h2>
+<p class="instagram-intro">New sketches and artwork are shared on the sketch account, while the personal account follows Rahul K Mahato.</p>
+<div class="social-links"><a href="https://www.instagram.com/shisha_kalam/" target="_blank" rel="noopener noreferrer" class="instagram-button">Sketches · @shisha_kalam</a><a href="https://www.instagram.com/rahul_k_mahato/" target="_blank" rel="noopener noreferrer" class="instagram-button">Personal · @rahul_k_mahato</a></div>
 </section>
-<footer><div>© 2026 Shisha Kalam</div><div>Owner: Rahul K. Mahato</div><div><a href="https://rahulkmahato.com.np" target="_blank" rel="noopener noreferrer">Main Website ↗</a></div></footer>
+<footer><div>© 2026 Shisha Kalam</div><div>Rahul K Mahato · Drawn by hand</div></footer>
 <div class="lightbox" id="lightbox"><div class="close-lightbox" id="closeLightbox">×</div><img id="lightboxImage" src="" alt="Full sketch"></div>
 <script>
-/*
-  FILE-DRIVEN GALLERY
-  Put images in the /sketches/ folder using these names:
-  sketch1.jpg, sketch2.jpg, sketch3.jpg, ...
-
-  Only files that actually exist will be shown.
-  Missing files are removed completely, so they leave NO blank area.
-*/
-const gallery = document.getElementById("gallery");
-const extensions = ["jpg", "jpeg", "png", "webp"];
-const maxSketches = 100;
-
-function roman(num){
-  const values=[[1000,"M"],[900,"CM"],[500,"D"],[400,"CD"],[100,"C"],[90,"XC"],[50,"L"],[40,"XL"],[10,"X"],[9,"IX"],[5,"V"],[4,"IV"],[1,"I"]];
-  let result="";
-  for(const [value,symbol] of values){while(num>=value){result+=symbol;num-=value}}
-  return result;
+const gallery=document.getElementById('gallery');
+const extensions=['jpg','jpeg','png','webp'];
+const maxSketches=100;
+let loadedCount=0;
+function addSketch(src,index){
+ const card=document.createElement('article');
+ card.className='art-card';
+ card.innerHTML=`<div class="art-image"><img src="${src}" alt="Shisha Kalam Sketch ${String(index).padStart(2,'0')}"></div><div class="art-info"><span class="art-number">${String(index).padStart(2,'0')}</span><span class="art-title">Sketch ${index}</span></div>`;
+ gallery.appendChild(card);
+ requestAnimationFrame(()=>card.classList.add('visible'));
+ card.addEventListener('click',()=>openViewer(src,index));
+ loadedCount++;
 }
-
-function addSketch(src, number){
-  const card=document.createElement("article");
-  card.className="art-card";
-  card.innerHTML=`
-    <div class="art-image"><img src="${src}" alt="Shisha Kalam Sketch ${number}"></div>
-    <div class="art-info"><span class="art-number">${String(number).padStart(2,"0")}</span><span class="art-title">Sketch ${roman(number)}</span></div>
-  `;
-
-  const img=card.querySelector("img");
-  img.addEventListener("error",()=>{
-    card.remove();
-    layoutGallery();
-  },{once:true});
-
-  img.addEventListener("load",()=>{
-    card.classList.add("visible");
-    setupLightbox(card,img);
-    layoutGallery();
-  },{once:true});
-
-  gallery.appendChild(card);
+function trySketch(index,extIndex=0){
+ if(index>maxSketches){if(!loadedCount)gallery.innerHTML='<div class="empty-gallery">Your sketchbook is waiting.<small>Upload sketch1.jpg inside the sketches folder to begin.</small></div>';return;}
+ if(extIndex>=extensions.length){trySketch(index+1);return;}
+ const ext=extensions[extIndex];
+ const src=`sketches/sketch${index}.${ext}`;
+ const img=new Image();
+ img.onload=()=>{addSketch(src,index);trySketch(index+1)};
+ img.onerror=()=>trySketch(index,extIndex+1);
+ img.src=src;
 }
-
-function layoutGallery(){
-  const cards=[...gallery.querySelectorAll(".art-card")];
-  cards.forEach((card,index)=>{
-    card.classList.remove("large","medium","small");
-    const position=index%3;
-    if(position===0) card.classList.add("large");
-    else if(position===1) card.classList.add("medium");
-    else card.classList.add("small");
-  });
-}
-
-function setupLightbox(card,img){
-  card.addEventListener("click",()=>{
-    if(img.complete && img.naturalWidth>0){
-      lightboxImage.src=img.src;
-      lightboxImage.alt=img.alt;
-      lightbox.classList.add("active");
-      document.body.style.overflow="hidden";
-    }
-  });
-}
-
-/* Try sketch1.jpg, sketch2.jpg, ...
-   If a file is not there, try jpeg/png/webp before removing it. */
-function findSketch(number){
-  return new Promise(resolve=>{
-    let index=0;
-    function tryNext(){
-      if(index>=extensions.length){resolve(null);return;}
-      const ext=extensions[index++];
-      const src=`sketches/sketch${number}.${ext}`;
-      const test=new Image();
-      test.onload=()=>resolve(src);
-      test.onerror=tryNext;
-      test.src=src;
-    }
-    tryNext();
-  });
-}
-
-async function loadGallery(){
-  for(let number=1;number<=maxSketches;number++){
-    const src=await findSketch(number);
-    if(src) addSketch(src,number);
-  }
-}
-
-const lightbox=document.getElementById("lightbox");
-const lightboxImage=document.getElementById("lightboxImage");
-const closeLightbox=document.getElementById("closeLightbox");
-function closeViewer(){lightbox.classList.remove("active");lightboxImage.src="";document.body.style.overflow=""}
-closeLightbox.addEventListener("click",closeViewer);
-lightbox.addEventListener("click",e=>{if(e.target===lightbox)closeViewer()});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeViewer()});
-
-loadGallery();
+trySketch(1);
+const lightbox=document.getElementById('lightbox'),lightboxImage=document.getElementById('lightboxImage'),closeLightbox=document.getElementById('closeLightbox');
+function openViewer(src,index){lightboxImage.src=src;lightboxImage.alt=`Shisha Kalam Sketch ${index}`;lightbox.classList.add('active');document.body.style.overflow='hidden'}
+function closeViewer(){lightbox.classList.remove('active');lightboxImage.src='';document.body.style.overflow=''}
+closeLightbox.addEventListener('click',closeViewer);lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeViewer()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeViewer()});
 </script>
 </body>
 </html>
